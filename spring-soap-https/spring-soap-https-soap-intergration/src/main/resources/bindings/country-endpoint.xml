@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bindings xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+		  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+		  xmlns="http://java.sun.com/xml/ns/jaxws"
+		  xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+		  xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+		  wsdlLocation="../wsdls/CountryEndpoint.wsdl">
+	<package name="com.moheqionglin.cxfEndpoint"/>
+	<bindings node="wsdl:definitions">
+	</bindings>
+</bindings>

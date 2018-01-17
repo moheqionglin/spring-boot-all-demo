@@ -1,0 +1,3 @@
+soap.https.endpoint: https://localhost:8443/services/
+server:
+  port: 8899
