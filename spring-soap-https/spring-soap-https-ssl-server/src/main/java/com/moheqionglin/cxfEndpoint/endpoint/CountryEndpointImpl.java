@@ -17,8 +17,7 @@ import javax.jws.WebService;
  */
 @WebService(serviceName = "CountryEndpointService", //服务名
         targetNamespace = "http://endpoint.cxfEndpoint.moheqionglin.com",//报名倒叙，并且和接口定义保持一致
-        endpointInterface = "com.moheqionglin.cxfEndpoint.endpoint.CountryEndpoint",
-        wsdlLocation = "classpath:wsdls/CountryEndpoint.wsdl")
+        endpointInterface = "com.moheqionglin.cxfEndpoint.endpoint.CountryEndpoint")
 @Component("countryEndpoint")
 public class CountryEndpointImpl implements CountryEndpoint{
 

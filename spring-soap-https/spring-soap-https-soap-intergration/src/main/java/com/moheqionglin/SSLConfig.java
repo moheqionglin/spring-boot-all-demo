@@ -48,18 +48,15 @@ public class SSLConfig {
             trustFactory.init(keyStore);
             TrustManager[] tm = trustFactory.getTrustManagers();
             tlsParams.setTrustManagers(tm);
-            //KeyManager选择证书证明自己的身份
-//            keyStore.load(in, password.toCharArray());
-//            KeyManagerFactory keyFactory = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
-//            keyFactory.init(keyStore, password.toCharArray());
-//            KeyManager[] km = keyFactory.getKeyManagers();
-//            tlsParams.setKeyManagers(km);
             httpConduit.setTlsClientParameters(tlsParams);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
     }
 
+    /**
+     * 这里因为是以 jar报的形式引入的。 因此读取文件的路径有点特殊
+     * */
     private byte[] initEmailHeaderImage() {
         try {
             final String imageResource = "/keystore.p12";

@@ -13,5 +13,5 @@ import java.lang.annotation.*;
 @Inherited
 @ImportAutoConfiguration({CountryEndpointConfig.class})
 public @interface EnableCountryEndpointApi {
-    
+
 }
