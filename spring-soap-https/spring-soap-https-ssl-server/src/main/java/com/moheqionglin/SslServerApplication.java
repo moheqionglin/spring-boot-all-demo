@@ -1,18 +1,13 @@
 package com.moheqionglin;
 
 import com.moheqionglin.cxfEndpoint.endpoint.CountryEndpoint;
-import com.moheqionglin.wss4jSecurity.WSSecurityCallback;
 import org.apache.catalina.Context;
 import org.apache.catalina.connector.Connector;
 import org.apache.cxf.Bus;
 import org.apache.cxf.jaxws.EndpointImpl;
 import org.apache.cxf.transport.servlet.CXFServlet;
-import org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor;
 import org.apache.tomcat.util.descriptor.web.SecurityCollection;
 import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
-import org.apache.wss4j.common.ConfigurationConstants;
-import org.apache.wss4j.dom.WSConstants;
-import org.apache.wss4j.dom.handler.WSHandlerConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -25,8 +20,6 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 
 import javax.xml.ws.Endpoint;
-import java.util.HashMap;
-import java.util.Map;
 
 @SpringBootApplication
 @EnableConfigurationProperties
@@ -58,15 +51,15 @@ public class SslServerApplication {
 	public Endpoint endpoint() {
 		EndpointImpl endpoint = new EndpointImpl(bus, countryEndpoint);
 		endpoint.publish("/CountryEndpoint");//接口发布在 /NetbarServices 目录下
-
-		Map<String, Object> inProps = new HashMap<>();
-		inProps.put(ConfigurationConstants.ACTION, ConfigurationConstants.USERNAME_TOKEN);
-		inProps.put(WSHandlerConstants.USER, userName);
-		inProps.put(ConfigurationConstants.PASSWORD_TYPE, WSConstants.PW_TEXT);
-		inProps.put(ConfigurationConstants.PW_CALLBACK_CLASS, WSSecurityCallback.class.getName());
-
-		WSS4JInInterceptor wssIn = new WSS4JInInterceptor(inProps);
-		endpoint.getInInterceptors().add(wssIn);
+		//Add WSS logic
+//		Map<String, Object> inProps = new HashMap<>();
+//		inProps.put(ConfigurationConstants.ACTION, ConfigurationConstants.USERNAME_TOKEN);
+//		inProps.put(WSHandlerConstants.USER, userName);
+//		inProps.put(ConfigurationConstants.PASSWORD_TYPE, WSConstants.PW_TEXT);
+//		inProps.put(ConfigurationConstants.PW_CALLBACK_CLASS, WSSecurityCallback.class.getName());
+//
+//		WSS4JInInterceptor wssIn = new WSS4JInInterceptor(inProps);
+//		endpoint.getInInterceptors().add(wssIn);
 		return endpoint;
 	}
 
