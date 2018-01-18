@@ -2,10 +2,14 @@ package com.moheqionglin;
 
 import com.moheqionglin.cxfEndpoint.endpoint.CountryEndpoint;
 import com.moheqionglin.wss4jSecurity.WSSecurityCallback;
+import org.apache.catalina.Context;
+import org.apache.catalina.connector.Connector;
 import org.apache.cxf.Bus;
 import org.apache.cxf.jaxws.EndpointImpl;
 import org.apache.cxf.transport.servlet.CXFServlet;
 import org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor;
+import org.apache.tomcat.util.descriptor.web.SecurityCollection;
+import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
 import org.apache.wss4j.common.ConfigurationConstants;
 import org.apache.wss4j.dom.WSConstants;
 import org.apache.wss4j.dom.handler.WSHandlerConstants;
@@ -14,6 +18,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
+import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -42,6 +48,10 @@ public class SslServerApplication {
 	@Value("${ssl.soap:password}")
 	private String password;
 
+	@Value("${server.port}")
+	private Integer sslPort;
+	@Value("${server.nonssl.port}")
+	private Integer nonSslPort;
 	//http://cxf.apache.org/docs/ws-security.html
 	//http://techtots.blogspot.jp/2016/07/enabling-ws-security-in-spring-boot.html
 	@Bean
@@ -62,5 +72,33 @@ public class SslServerApplication {
 
 	@Bean public ServletRegistrationBean servletRegistrationBean() {
 		return new ServletRegistrationBean(new CXFServlet(), "/services/*");
+	}
+
+	@Bean
+	public EmbeddedServletContainerFactory servletContainer() {
+		TomcatEmbeddedServletContainerFactory tomcat = new TomcatEmbeddedServletContainerFactory() {
+			@Override
+			protected void postProcessContext(Context context) {
+				SecurityConstraint securityConstraint = new SecurityConstraint();
+				securityConstraint.setUserConstraint("CONFIDENTIAL");
+				SecurityCollection collection = new SecurityCollection();
+				collection.addPattern("/*");
+				securityConstraint.addCollection(collection);
+				context.addConstraint(securityConstraint);
+			}
+		};
+
+		tomcat.addAdditionalTomcatConnectors(initiateHttpConnector());
+		return tomcat;
+	}
+
+	private Connector initiateHttpConnector() {
+		Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
+		connector.setScheme("http");
+		connector.setPort(nonSslPort);
+		connector.setSecure(false);
+		connector.setRedirectPort(sslPort);
+
+		return connector;
 	}
 }

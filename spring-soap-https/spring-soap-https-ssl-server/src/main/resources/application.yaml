@@ -9,3 +9,5 @@ server.ssl.keyAlias: moheqionglin
 
 ssl.soap.username: mohe_soap_user
 ssl.soap:password: 123456#
+
+server.nonssl.port: 8080
