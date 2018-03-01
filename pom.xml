@@ -15,6 +15,7 @@
     <modules>
         <module>externalized-configuration</module>
         <module>spring-soap-https</module>
+        <module>spring-feign-hystrix</module>
     </modules>
 
     <properties>

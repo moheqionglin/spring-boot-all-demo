@@ -93,24 +93,33 @@
                             <sourceRoot>${project.build.directory}/generated-sources/java</sourceRoot>
                             <fork>true</fork>
                             <additionalJvmArgs>
-                                -Djavax.net.ssl.trustStore=${basedir}/src/main/resources/keystore.p12 -Djavax.net.ssl.trustStorePassword=123456
+                                <!-- -Djavax.net.ssl.trustStore=${basedir}/src/main/resources/keystore.p12 -Djavax.net.ssl.trustStorePassword=123456-->
+                                -Djavax.net.ssl.trustStore=${basedir}/src/main/resources/wxjdessl -Djavax.net.ssl.trustStorePassword=changeit
                             </additionalJvmArgs>
                             <defaultOptions>
                                 <allowElementRefs>true</allowElementRefs>
                                 <noAddressBinding>true</noAddressBinding>
                             </defaultOptions>
                             <wsdlOptions>
+                                <!--<wsdlOption>-->
+                                    <!--&lt;!&ndash;http://cxf.apache.org/docs/maven-cxf-codegen-plugin-wsdl-to-java.html&ndash;&gt;-->
+                                    <!--<bindingFiles>-->
+                                        <!--<bindingFile>${basedir}/src/main/resources/bindings/country-endpoint.xml</bindingFile>-->
+                                    <!--</bindingFiles>-->
+                                    <!--<wsdl>${basedir}/src/main/resources/wsdls/CountryEndpoint.wsdl</wsdl>-->
+                                    <!--<extraargs>-->
+                                        <!--<extraarg>-p</extraarg>-->
+                                        <!--<extraarg>com.moheqionglin.cxfEndpoint</extraarg>-->
+                                    <!--</extraargs>-->
+                                <!--</wsdlOption>-->
                                 <wsdlOption>
-                                    <!--http://cxf.apache.org/docs/maven-cxf-codegen-plugin-wsdl-to-java.html-->
-                                    <bindingFiles>
-                                        <bindingFile>${basedir}/src/main/resources/bindings/country-endpoint.xml</bindingFile>
-                                    </bindingFiles>
-                                    <wsdl>${basedir}/src/main/resources/wsdls/CountryEndpoint.wsdl</wsdl>
+                                    <wsdl>${basedir}/src/main/resources/wsdls/SupplierManager.xml</wsdl>
                                     <extraargs>
                                         <extraarg>-p</extraarg>
                                         <extraarg>com.moheqionglin.cxfEndpoint</extraarg>
                                     </extraargs>
                                 </wsdlOption>
+
                             </wsdlOptions>
                         </configuration>
                         <goals>

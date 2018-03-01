@@ -1,14 +1,11 @@
 package com.moheqionglin.CountryEndpoint;
 
 import com.moheqionglin.SSLConfig;
-import com.moheqionglin.cxfEndpoint.CountryEndpoint;
 import com.moheqionglin.security.CxfLoggingInInterceptor;
 import com.moheqionglin.security.CxfLoggingOutInterceptor;
 import com.moheqionglin.security.PasswordCallback;
-import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -31,12 +28,13 @@ public class CountryEndpointConfig {
     @Autowired
     private CxfLoggingOutInterceptor cxfLoggingOutInterceptor;
 
-    @Bean("httpsCountryEndpoint")
-    public CountryEndpoint getCountryEndpoint() {
-        JaxWsProxyFactoryBean jaxWsProxyFactoryBean = new JaxWsProxyFactoryBean();
-        jaxWsProxyFactoryBean.setServiceClass(CountryEndpoint.class);
-        jaxWsProxyFactoryBean.setAddress(address + "CountryEndpoint");
-        CountryEndpoint manager = (CountryEndpoint) jaxWsProxyFactoryBean.create();
+//    @Bean("httpsCountryEndpoint")
+//    public CountryEndpoint getCountryEndpoint() {
+//        JaxWsProxyFactoryBean jaxWsProxyFactoryBean = new JaxWsProxyFactoryBean();
+//        jaxWsProxyFactoryBean.setServiceClass(CountryEndpoint.class);
+//        jaxWsProxyFactoryBean.setAddress(address + "CountryEndpoint");
+//        CountryEndpoint manager = (CountryEndpoint) jaxWsProxyFactoryBean.create();
+
         //security
 //        Map<String, Object> outProps = Maps.newHashMap();
 //        outProps.put(WSHandlerConstants.ACTION, "UsernameToken Timestamp"); //WSHandlerConstants.USERNAME_TOKEN
@@ -49,9 +47,10 @@ public class CountryEndpointConfig {
 //        client.getInInterceptors().add(cxfLoggingInInterceptor);
 //        client.getOutInterceptors().add(cxfLoggingOutInterceptor);
 
-        sslConfig.configureSSLOnTheClient(manager);
-        return manager;
-    }
 
+//
+//        sslConfig.configureSSLOnTheClient(manager);
+//        return manager;
+//    }
 
 }

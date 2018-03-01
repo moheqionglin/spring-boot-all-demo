@@ -4,3 +4,5 @@ server:
 
 cxf.user: moheqionglin
 cxf.pwd: 123455
+
+wx_jde_material.endpoint: https://10.111.16.89:9211/DV920/
