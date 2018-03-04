@@ -1,8 +1,6 @@
 package test;
 
 import com.moheqionglin.SslClientApplication;
-import com.moheqionglin.cxfEndpoint.BusinessServiceException_Exception;
-import com.moheqionglin.cxfEndpoint.GetSupplierV2;
 import com.moheqionglin.cxfEndpoint.SupplierManager;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,11 +21,11 @@ public class SupplierManagerTest {
 
     @Test
     public void sslTest(){
-        GetSupplierV2 v = new GetSupplierV2();
-        try {
-            System.out.println(supplierManager.getSupplierV2(v));
-        } catch (BusinessServiceException_Exception e) {
-            e.printStackTrace();
-        }
+//        GetSupplierV2 v = new GetSupplierV2();
+//        try {
+//            System.out.println(supplierManager.getSupplierV2(v));
+//        } catch (BusinessServiceException_Exception e) {
+//            e.printStackTrace();
+//        }
     }
 }

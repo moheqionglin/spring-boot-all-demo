@@ -16,6 +16,7 @@
         <module>externalized-configuration</module>
         <module>spring-soap-https</module>
         <module>spring-feign-hystrix</module>
+        <module>spring-gulp-rev-cdn</module>
     </modules>
 
     <properties>
@@ -30,7 +31,8 @@
                 <!-- Import dependency management from Spring Boot -->
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-parent</artifactId>
-                <version>1.5.9.RELEASE</version>
+                <version>1.4.2.RELEASE</version>
+                <!--<version>1.5.9.RELEASE</version>-->
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

@@ -1,0 +1,5 @@
+server:
+    port: 13102
+    contextPath: /
+    servlet-path: /
+
