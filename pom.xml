@@ -17,6 +17,12 @@
         <module>spring-soap-https</module>
         <module>spring-feign-hystrix</module>
         <module>spring-gulp-rev-cdn</module>
+        <module>spring-database-transaction</module>
+        <module>spring-regularly-class</module>
+        <module>multiple-datasource-transaction</module>
+        <module>datasourceoracle</module>
+        <module>read-write-split</module>
+        <module>spring-boot-mybatis-intergation</module>
     </modules>
 
     <properties>
