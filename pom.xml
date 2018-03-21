@@ -23,6 +23,7 @@
         <module>datasourceoracle</module>
         <module>read-write-split</module>
         <module>spring-boot-mybatis-intergation</module>
+        <module>spring-boot-camel</module>
     </modules>
 
     <properties>

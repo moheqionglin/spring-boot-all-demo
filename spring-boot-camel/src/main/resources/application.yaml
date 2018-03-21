@@ -1,0 +1,16 @@
+
+server:
+    contextPath: /
+    port: 9999
+
+activemq.endpoint: "tcp://localhost:61616"
+
+spring:
+    activemq:
+        pool:
+            enabled: true
+        broker-url: ${activemq.endpoint}
+        packages:
+            trust-all: true
+
+camel.servlet.path: /camel/
